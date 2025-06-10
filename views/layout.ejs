@@ -5,6 +5,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="<%= process.env.SITE_URL %>/assets/styles/styles.css">
+  <% if (title === 'Inscription') { %>
+  <link rel="stylesheet" href="<%= process.env.SITE_URL %>/assets/styles/form/form.css">
+  <% } %>
   <title><%= title || 'shareskill' %></title>
 </head>
 
@@ -14,9 +17,13 @@
   </header>
 
   <main>
+    <h1><%= title %></h1>
     <%- include(view) %>
   </main>
   <script type="module" src="<%= process.env.SITE_URL %>/assets/js/navbar.js"></script>
+  <% if (title === 'Inscription') { %>
+  <script type="module" src="<%= process.env.SITE_URL %>/assets/js/register.js"></script>
+  <% } %>
 </body>
 
 </html>
