@@ -12,6 +12,7 @@
 </head>
 
 <body>
+
   <header>
     <%- include('./components/navbar') %>
   </header>
@@ -21,9 +22,11 @@
     <%- include(view) %>
   </main>
   <script type="module" src="<%= process.env.SITE_URL %>/assets/js/navbar.js"></script>
+
   <% if (title === 'Inscription') { %>
   <script type="module" src="<%= process.env.SITE_URL %>/assets/js/register.js"></script>
   <% } %>
+
 </body>
 
 </html>

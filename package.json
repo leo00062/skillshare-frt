@@ -1,7 +1,6 @@
 {
   "name": "shareskill-frt",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "type": "module",
   "scripts": {
@@ -11,17 +10,10 @@
     "browsersync": "browser-sync start --proxy http://localhost:3000 --files \"public/assets/styles/**/*.css,public/assets/js/**/*.js,views/**/*.ejs\"",
     "start": "concurrently \"npm run sass\" \"npm run server\" \"npm run browsersync\""
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/leo00062/skillshare-frt.git"
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/leo00062/skillshare-frt/issues"
-  },
-  "homepage": "https://github.com/leo00062/skillshare-frt#readme",
+  "description": "",
   "dependencies": {
     "dotenv": "^16.5.0",
     "ejs": "^3.1.10",

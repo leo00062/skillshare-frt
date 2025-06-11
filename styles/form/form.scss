@@ -24,10 +24,10 @@ label {
   color: #555;
 }
 
-input[type="text"],
-input[type="email"],
-input[type="password"],
-input[type="file"] {
+input[type='text'],
+input[type='email'],
+input[type='password'],
+input[type='file'] {
   width: 100%;
   padding: 12px 15px;
   border: 1px solid #ddd;
@@ -42,11 +42,11 @@ input:focus {
   outline: none;
 }
 
-input[type="file"] {
+input[type='file'] {
   padding: 8px;
 }
 
-button[type="submit"] {
+button[type='submit'] {
   display: inline-block;
   width: 100%;
   padding: 12px 0;
@@ -60,7 +60,7 @@ button[type="submit"] {
   transition: background 0.3s ease;
 }
 
-button[type="submit"]:hover {
+button[type='submit']:hover {
   background: #0056b3;
 }
 
@@ -70,20 +70,10 @@ span.error {
   font-style: italic;
 }
 
-/* Nouvelle classe pour les inputs avec erreur */
-input.error-input:focus {
+input.error-input {
   border-color: #dc3545; /* Rouge */
   box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.15); /* Rouge transparent */
   outline: none;
-}
-
-button[type="submit"]:hover {
-  background: blue;
-}
-
-/* Optionnel : bordure rouge même sans focus */
-input.error-input {
-  border-color: #dc3545;
 }
 
 @media (max-width: 480px) {
