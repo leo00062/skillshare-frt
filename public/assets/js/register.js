@@ -1,3 +1,4 @@
+import { Exception } from "sass";
 import { fetchData } from "../../lib/fetchData.js";
 import { validateRegisterForm } from "../../services/validate.js";
 
@@ -5,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // redirection si connecté
   const registerForm = document.querySelector("#register-form");
   const API_URL = document.querySelector("#api-url").value;
-  console.log(API_URL);
+  const msg = document.querySelector("#verify-msg");
   registerForm.addEventListener("submit", async (e) => {
     e.preventDefault();
     // réinitialisation des champ erreurs à vide
@@ -54,6 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
             body: avatarFileData,
           },
         });
+        jsonData.avatar = result.filename;
       } catch (error) {
         // message utilisateur ...
       }
@@ -68,8 +70,18 @@ document.addEventListener("DOMContentLoaded", () => {
           body: JSON.stringify(jsonData),
         },
       });
+      if (result.success) {
+        throw new Exception(result.error);
+      }
+      if (result.success) {
+        registerForm.reset();
+        msg.textContent =
+          "Inscription réussie, vérifier votre messagerie pour activer le compte";
+        msg.style.color = "green";
+      }
     } catch (error) {
-      // message utilisateur ...
+      msg.textContent = error.message;
+      msg.style.color = "red";
     }
   });
 });
