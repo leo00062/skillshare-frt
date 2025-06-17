@@ -1,3 +1,4 @@
+@use "../abstracts/variables" as *;
 /* Appliquer box-sizing pour une gestion correcte des dimensions
 Pour les formulaires essentiellement
 */
@@ -5,6 +6,10 @@ Pour les formulaires essentiellement
 *::before,
 *::after {
   box-sizing: border-box;
+}
+
+button a {
+  text-decoration: none;
 }
 
 body {
@@ -19,4 +24,3 @@ h1 {
   font-size: large;
   text-align: center;
 }
-

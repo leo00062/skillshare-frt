@@ -1,3 +1,5 @@
+@use "../abstracts/variables" as *;
+
 form {
   max-width: 420px;
   margin: 60px auto;
@@ -24,10 +26,10 @@ label {
   color: #555;
 }
 
-input[type='text'],
-input[type='email'],
-input[type='password'],
-input[type='file'] {
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="file"] {
   width: 100%;
   padding: 12px 15px;
   border: 1px solid #ddd;
@@ -42,11 +44,11 @@ input:focus {
   outline: none;
 }
 
-input[type='file'] {
+input[type="file"] {
   padding: 8px;
 }
 
-button[type='submit'] {
+button[type="submit"] {
   display: inline-block;
   width: 100%;
   padding: 12px 0;
@@ -60,7 +62,7 @@ button[type='submit'] {
   transition: background 0.3s ease;
 }
 
-button[type='submit']:hover {
+button[type="submit"]:hover {
   background: #0056b3;
 }
 
@@ -68,6 +70,23 @@ span.error {
   color: red;
   font-size: small;
   font-style: italic;
+}
+
+.register-link,
+.forgot-password-link {
+  display: block;
+  text-align: center;
+  margin-top: $spacing-md;
+  color: $primary-color;
+  text-decoration: none;
+  margin-bottom: 20px;
+}
+
+.register-link a {
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 input.error-input {
