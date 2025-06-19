@@ -11,8 +11,8 @@ export function validateRegisterForm(form) {
     "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$"
   );
   // validation email
-  const email = formData.get("email").trim();
-  if (!emailRegex.test(email)) {
+  const email = formData.get("email")?.trim();
+  if (formData.get("username") !== null && !emailRegex.test(email)) {
     errors.email = "Email invalide";
   }
   // Regex mot de passe : 12 caractères minimun, 1 majuscule, 1 chiffre, 1 caractère spécial
@@ -20,8 +20,11 @@ export function validateRegisterForm(form) {
     /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_\-+=\[\]{};':"\\|,.<>/?`~])[A-Za-z\d!@#$%^&*()_\-+=\[\]{};':"\\|,.<>/?`~]{12,}$/;
   const strongPasswordRegex = new RegExp(passwordRegexPattern);
   // validation mot de passe
-  const password = formData.get("password").trim();
-  if (!strongPasswordRegex.test(password)) {
+  const password = formData.get("password")?.trim();
+  if (
+    formData.get("username") !== null &&
+    !strongPasswordRegex.test(password)
+  ) {
     errors.password =
       "Mot de passe invalide : 12 caractères minimun, 1 majuscule, 1 chiffre, 1 caractère spécial";
   }

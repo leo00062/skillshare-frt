@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const registerForm = document.querySelector("#register-form");
   const API_URL = document.querySelector("#api-url").value;
   const msg = document.querySelector("#verify-msg");
+  const msgContainer = document.querySelector(".message-container");
   registerForm.addEventListener("submit", async (e) => {
     e.preventDefault();
     // réinitialisation des champ erreurs à vide
@@ -69,16 +70,18 @@ document.addEventListener("DOMContentLoaded", () => {
           body: JSON.stringify(jsonData),
         },
       });
-      if (result.success) {
+      if (!result.success) {
         throw new Exception(result.error);
       }
       if (result.success) {
         registerForm.reset();
+        msgContainer.style.display = "block";
         msg.textContent =
           "Inscription réussie, vérifier votre messagerie pour activer le compte";
         msg.style.color = "green";
       }
     } catch (error) {
+      msgContainer.style.display = "block";
       msg.textContent = error.message;
       msg.style.color = "red";
     }

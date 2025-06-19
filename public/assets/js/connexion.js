@@ -3,9 +3,29 @@ import { AuthManager } from "../../services/auth.js";
 import { validateRegisterForm } from "../../services/validate.js";
 
 document.addEventListener("DOMContentLoaded", () => {
+  // Récupération des paramètres d'URL à l'intérieur du DOMContentLoaded
+  const params = new URLSearchParams(window.location.search);
+
+  // Récupération du message
+  const message = params.get("message") || "";
+
+  // récupération des UL messages
+  const accessMessageContainer = document.querySelector(".access-messages");
+  const accessMessageText = document.querySelector("#access-msg");
+
+  // Affichage du message s'il existe
+  if (message && message.trim() !== "") {
+    accessMessageContainer.style.display = "block";
+    accessMessageText.textContent = message;
+    accessMessageText.style.color = "red";
+  } else {
+    console.log("Pas de message à afficher");
+    accessMessageContainer.style.display = "none";
+    accessMessageText.textContent = "";
+  }
   // rediriger si déjà connecter
   if (AuthManager.isLoggedIn()) {
-    window.location.href = "/";
+    // window.location.href = "/";
     return;
   }
 

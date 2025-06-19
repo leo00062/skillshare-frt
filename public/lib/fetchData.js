@@ -1,27 +1,22 @@
 /**
  * Utilitaire pour gérer les appels API
- */
+ */ // Ajouter le token JWT si présent
 export async function fetchData({ route, api, options = {} }) {
+  const token = localStorage.getItem("JWTtoken");
   const headers = {
-    Accept: 'application/json',
-    ...options.headers,
+    Accept: "application/json",
+    // Si ce n'est pas un FormData, ajouter Content-Type: application/json
+    ...(!(options.body instanceof FormData) && {
+      "Content-Type": "application/json",
+    }),
+    ...(token && { Authorization: `Bearer ${token}` }),
+    ...(options.headers || {}),
   };
 
-  // Ajouter le token JWT si présent
-  //   const token = localStorage.getItem('token');
-  //   if (token) {
-  //     headers['Authorization'] = `Bearer ${token}`;
-  //   }
-
-  // Si ce n'est pas un FormData, ajouter Content-Type: application/json
-  if (!(options.body instanceof FormData)) {
-    headers['Content-Type'] = 'application/json';
-  }
-
   // Construire la query string si des paramètres sont présents
-  let queryString = '';
+  let queryString = "";
   if (options.params) {
-    queryString = '?' + new URLSearchParams(options.params).toString();
+    queryString = "?" + new URLSearchParams(options.params).toString();
     delete options.params;
   }
 
@@ -37,13 +32,13 @@ export async function fetchData({ route, api, options = {} }) {
   try {
     jsonData = JSON.parse(responseData);
   } catch (e) {
-    console.error('Réponse non-JSON:', responseData);
-    throw new Error('Format de réponse invalide');
+    console.error("Réponse non-JSON:", responseData);
+    throw new Error("Format de réponse invalide");
   }
 
   if (result.ok) {
     return jsonData;
   }
 
-  throw new Error(jsonData.error || 'Erreur serveur');
+  throw new Error(jsonData.error || "Erreur serveur");
 }
